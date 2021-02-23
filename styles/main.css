@@ -13,6 +13,12 @@ body,
 .head {
   padding: 1.5em 1em;
   background: lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.burger {
+  width: 3rem;
 }
 
 .main {
@@ -61,6 +67,10 @@ body,
   padding: 1em;
 }
 
+#new-project-name {
+  width: 100%;
+}
+
 .new-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -83,7 +93,8 @@ body,
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  padding: 0 1em;
 }
 
 .check-todo {
@@ -105,5 +116,20 @@ body,
 }
 
 .inactive {
-  display: none;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 460px) {
+  .main {
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .burger {
+    visibility: visible;
+  }
+
+  .todos-view {
+    padding: 2em 0;
+  }
 }
