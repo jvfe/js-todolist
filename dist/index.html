@@ -22,8 +22,13 @@
         <div class="project-bar" id="project-list">
           <h2 class="project-list-title">Projects</h2>
           <button class="btn project project-btn">Main</button>
-          <button class="btn project project-btn">Groceries</button>
           <button class="btn project project-btn" id="add-proj">+ New Project</button>
+          <div class="inactive new-project-div">
+            <form id="new-project-form" class="new-form">
+              <input type="text" name="new-project-name" id="new-project-name">
+              <button type="submit" class="btn submit-project">Add</button>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -31,7 +36,7 @@
         <h1 class="current-project">Main</h1>
         <div class="todos-view">
         <div class="todo-element">
-          <button class="check-todo">✓</button>
+          <button class="btn check-todo">✓</button>
           <div class="todo-content">
             <p class="todo">Create a new todo!</p>
             <input type="date" name="todo-date" id="todo-date" />
@@ -40,6 +45,12 @@
       </div>
       <div class="center">
         <button id="new-todo" class="btn">+ Add Task</button>
+      </div>
+      <div class="inactive center new-todo-div">
+        <form id="new-todo-form" class="new-form">
+          <input type="text" name="new-todo-name" id="new-todo-name">
+          <button type="submit" class="btn submit-todo">Add</button>
+        </form>
       </div>
       </div>
     </div>

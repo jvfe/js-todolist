@@ -39,8 +39,8 @@ body,
 
 .btn {
   border: none;
-  line-height: 3em;
   border-radius: 0.3em;
+  cursor: pointer;
 }
 
 .center {
@@ -51,6 +51,7 @@ body,
 .project-btn {
   background: lightcoral;
   border: none;
+  line-height: 3em;
   margin: 0.5em 0;
 }
 
@@ -58,6 +59,12 @@ body,
   display: flex;
   flex-direction: column;
   padding: 1em;
+}
+
+.new-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
 }
 
 .todos-view {
@@ -90,4 +97,13 @@ body,
 #new-todo {
   width: 20em;
   background: lightseagreen;
+  line-height: 3em;
+}
+
+#new-todo-form {
+  margin-top: 1em;
+}
+
+.inactive {
+  display: none;
 }
