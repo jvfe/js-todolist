@@ -5,6 +5,89 @@
 }
 
 html,
-body {
+body,
+.container {
   height: 100%;
+}
+
+.head {
+  padding: 1.5em 1em;
+  background: lightgrey;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(150px, 25%) 1fr;
+  height: 100%;
+  background: #fafafa;
+}
+
+.sidebar {
+  background: gray;
+  height: 100%;
+  padding: 1em;
+}
+
+.project-bar {
+  display: grid;
+  margin-bottom: 1em;
+}
+
+.project-list-title {
+  padding: 1em 0;
+}
+
+.btn {
+  border: none;
+  line-height: 3em;
+  border-radius: 0.3em;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.project-btn {
+  background: lightcoral;
+  border: none;
+  margin: 0.5em 0;
+}
+
+.project-view {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.todos-view {
+  padding: 2em;
+}
+
+.todo-element {
+  display: flex;
+  justify-content: space-evenly;
+  background: lightgrey;
+  border-radius: 0.5em;
+  padding: 0.5em;
+}
+
+.todo-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.check-todo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 0 0.2em;
+}
+
+#new-todo {
+  width: 20em;
+  background: lightseagreen;
 }
