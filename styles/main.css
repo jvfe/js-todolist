@@ -97,6 +97,7 @@ body {
 }
 
 .project-btn {
+  width: 100%;
   background: var(--orange-yellow-crayola);
   border: none;
   line-height: 3em;
