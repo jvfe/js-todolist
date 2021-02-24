@@ -57,10 +57,13 @@
               <form id="new-project-form" class="new-form">
                 <input
                   type="text"
+                  placeholder="Project Name"
                   name="new-project-name"
                   id="new-project-name"
                 />
-                <button type="submit" class="btn submit-project">Add</button>
+                <button type="submit" class="btn submit-btn submit-project">
+                  Add
+                </button>
               </form>
             </div>
           </div>
@@ -70,21 +73,37 @@
           <h1 class="title current-project">Main</h1>
           <div class="todos-view">
             <div class="todo-element">
-              <button class="btn check-todo">✓</button>
+              <button class="btn todo-btn check-todo">✓</button>
               <div class="todo-content">
-                <p class="todo">Create a new todo!</p>
+                <div>
+                  <p class="todo">Create a new todo!</p>
+                  <p class="todo-description">Bla bla</p>
+                </div>
                 <input type="date" name="todo-date" id="todo-date" />
               </div>
+              <button class="btn todo-btn remove-todo">⛌</button>
             </div>
           </div>
-          <div class="center">
+          <div class="center new-todo-container">
             <button id="new-todo" class="btn">✚ Add Task</button>
-          </div>
-          <div class="inactive center new-todo-div">
-            <form id="new-todo-form" class="new-form">
-              <input type="text" name="new-todo-name" id="new-todo-name" />
-              <button type="submit" class="btn submit-todo">Add</button>
-            </form>
+            <div class="inactive center new-todo-div">
+              <form id="new-todo-form" class="new-form">
+                <input
+                  type="text"
+                  placeholder="Task"
+                  name="new-todo-name"
+                  id="new-todo-name"
+                />
+                <textarea
+                  placeholder="Task description"
+                  name="new-todo-description"
+                  id="new-todo-description"
+                ></textarea>
+                <button type="submit" class="btn submit-btn submit-todo">
+                  ✚
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </main>
