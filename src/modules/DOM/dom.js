@@ -1,6 +1,9 @@
+import FormHandler from "./formHandler";
+
 class UI {
   static loadPage() {
     UI.handleButtons();
+    FormHandler.handleForms();
   }
 
   static handleButtons() {
