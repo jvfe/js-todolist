@@ -1,9 +1,11 @@
 import FormHandler from "./formHandler";
+import ViewHandler from "./viewHandler";
 
 class UI {
   static loadPage() {
     UI.handleButtons();
     FormHandler.handleForms();
+    ViewHandler.renderView();
   }
 
   static handleButtons() {
@@ -34,4 +36,4 @@ class UI {
   }
 }
 
-export { UI };
+export default UI;
