@@ -172,10 +172,6 @@ body {
   margin-top: 1em;
 }
 
-.active {
-  display: block;
-}
-
 .inactive {
   visibility: hidden;
 }
@@ -191,9 +187,12 @@ body {
   }
 
   .sidebar {
-    display: none;
     border-right: none;
     border-bottom: 2px solid var(--yale-blue);
+  }
+
+  .hidden {
+    display: none;
   }
 
   .todos-view {
