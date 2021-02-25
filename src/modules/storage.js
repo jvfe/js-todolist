@@ -5,12 +5,13 @@ class Storage {
   static initLocalStorage() {
     if (localStorage.length !== 0) {
       return;
+      // localStorage.clear();
     }
 
     const initialTodo = new Todo("Create a new Todo!", "Bla bla");
     const initialProject = new Project("Main", [initialTodo]);
 
-    localStorage.setItem("projects", JSON.stringify([initialProject]));
+    Storage.updateStorage([initialProject]);
   }
 
   static getStorage() {
@@ -24,6 +25,31 @@ class Storage {
     });
 
     return convertedProjects;
+  }
+
+  static updateStorage(projectList) {
+    localStorage.setItem("projects", JSON.stringify(projectList));
+  }
+
+  static getProjectByName(match) {
+    const projectList = Storage.getStorage();
+
+    const project = projectList.find((project) => project.name == match);
+
+    return [project, projectList.indexOf(project)];
+  }
+
+  static getCurrentProject() {
+    const projectTitle = document.querySelector(".current-project");
+    const [currentProject] = Storage.getProjectByName(projectTitle.textContent);
+    return currentProject;
+  }
+
+  static updateProject(project) {
+    const projectList = Storage.getStorage();
+    const [, projectIndex] = Storage.getProjectByName(project.name);
+    projectList[projectIndex] = project;
+    Storage.updateStorage(projectList);
   }
 }
 

@@ -17,8 +17,10 @@ class ViewHandler {
     const projectTitle = document.querySelector(".current-project");
     projectTitle.textContent = currentProject.name;
     const todosView = document.querySelector(".todos-view");
+    todosView.textContent = "";
     currentProject.todos.forEach((todo) => {
       const todoElement = ViewHandler.createTodoElement(todo);
+      todoElement.dataset.projindex = currentProject.todos.indexOf(todo);
       todosView.appendChild(todoElement);
     });
   }
