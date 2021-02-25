@@ -68,12 +68,20 @@ class ViewHandler {
       innerDiv.appendChild(todoValue)
     );
 
-    const todoDate = document.createElement("input");
-    todoDate.type = "date";
-    todoDate.name = "todo-date";
-    todoDate.id = "todo-date";
+    let todoDateElement;
+    if (todo.date === "No date") {
+      todoDateElement = document.createElement("input");
+      todoDateElement.type = "date";
+      todoDateElement.name = "todo-date";
+      todoDateElement.id = "todo-date";
+    } else {
+      todoDateElement = document.createElement("p");
+      todoDateElement.textContent = todo.date;
+    }
 
-    [innerDiv, todoDate].forEach((element) => todoContent.appendChild(element));
+    [innerDiv, todoDateElement].forEach((element) =>
+      todoContent.appendChild(element)
+    );
 
     return todoContent;
   }

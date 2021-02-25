@@ -8,7 +8,7 @@ class Storage {
       // localStorage.clear();
     }
 
-    const initialTodo = new Todo("Create a new Todo!", "Bla bla");
+    const initialTodo = new Todo("Create a new Todo!", "Bla bla", "12/02/2018");
     const initialProject = new Project("Main", [initialTodo]);
 
     Storage.updateStorage([initialProject]);
@@ -49,6 +49,12 @@ class Storage {
     const projectList = Storage.getStorage();
     const [, projectIndex] = Storage.getProjectByName(project.name);
     projectList[projectIndex] = project;
+    Storage.updateStorage(projectList);
+  }
+
+  static addProject(project) {
+    const projectList = Storage.getStorage();
+    projectList.push(project);
     Storage.updateStorage(projectList);
   }
 }

@@ -1,9 +1,9 @@
 class Todo {
-  constructor(task, description, done = false, date = "No date") {
+  constructor(task, description, date = "No date", done = false) {
     this.task = task;
     this.description = description;
-    this.done = done;
     this.date = date;
+    this.done = done;
   }
 
   get done() {

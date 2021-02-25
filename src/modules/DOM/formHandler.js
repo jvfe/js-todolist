@@ -17,6 +17,7 @@ class FormHandler {
       const formData = new FormData(projectForm);
 
       const newProject = new Project(formData.get("new-project-name"));
+      Storage.addProject(newProject);
       ViewHandler.createProjectButton(newProject);
       UI.toggleClass(projectForm.parentElement, "inactive");
     });
