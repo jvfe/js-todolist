@@ -8,8 +8,10 @@ class ViewHandler {
   }
 
   static renderProjects(projectList) {
+    const projectListEl = document.querySelector("#project-list");
+    projectListEl.textContent = "";
     projectList.forEach((project) => {
-      ViewHandler.createProjectButton(project);
+      ViewHandler.createProjectButton(project, projectListEl);
     });
   }
 
@@ -20,16 +22,16 @@ class ViewHandler {
     todosView.textContent = "";
     currentProject.todos.forEach((todo) => {
       const todoElement = ViewHandler.createTodoElement(todo);
-      todoElement.dataset.projindex = currentProject.todos.indexOf(todo);
+      todoElement.dataset.projIdx = currentProject.todos.indexOf(todo);
       todosView.appendChild(todoElement);
     });
   }
 
-  static createProjectButton(project) {
-    const projectListEl = document.querySelector("#project-list");
+  static createProjectButton(project, projectListEl) {
     const newProject = document.createElement("button");
     newProject.classList.add(...["btn", "project", "project-btn"]);
     newProject.textContent = project.name;
+    newProject.dataset.storageIdx = Storage.getProjectByName(project.name)[1];
     projectListEl.appendChild(newProject);
   }
 
@@ -38,19 +40,35 @@ class ViewHandler {
     todoElement.classList.add("todo-element");
 
     const checkTodo = document.createElement("button");
-    checkTodo.textContent = "✓";
-    checkTodo.classList.add(...["btn", "todo-btn", "check-todo"]);
+    if (todo.done) {
+      checkTodo.textContent = "✓";
+      checkTodo.classList.add(...["btn", "todo-btn", "check-todo"]);
+    } else {
+      checkTodo.textContent = "⛌";
+      checkTodo.classList.add(...["btn", "todo-btn", "check-todo"]);
+    }
+
+    checkTodo.addEventListener("click", () =>
+      ViewHandler.handleTodoCheck(checkTodo)
+    );
 
     const todoContent = ViewHandler.createTodoContentElement(todo);
 
     const removeTodo = document.createElement("button");
-    removeTodo.textContent = "⛌";
-    removeTodo.classList.add(...["btn", "todo-btn", "remove-todo"]);
+    removeTodo.textContent = "Remove";
+    removeTodo.classList.add(...["btn", "remove-todo"]);
 
     [checkTodo, todoContent, removeTodo].forEach((element) =>
       todoElement.appendChild(element)
     );
     return todoElement;
+  }
+
+  static handleTodoCheck(todoCheck) {
+    const currentProject = Storage.getCurrentProject();
+    const todoIdx = Number(todoCheck.parentElement.dataset.projIdx);
+    Storage.setTodoObjAsDone(currentProject, todoIdx);
+    ViewHandler.renderView();
   }
 
   static createTodoContentElement(todo) {

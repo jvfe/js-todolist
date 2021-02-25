@@ -3,9 +3,9 @@ import ViewHandler from "./viewHandler";
 
 class UI {
   static loadPage() {
-    UI.handleButtons();
-    FormHandler.handleForms();
     ViewHandler.renderView();
+    FormHandler.handleForms();
+    UI.handleButtons();
   }
 
   static handleButtons() {

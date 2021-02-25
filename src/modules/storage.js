@@ -45,6 +45,15 @@ class Storage {
     return currentProject;
   }
 
+  static getTodoObj(proj, idx) {
+    return proj.todos[idx];
+  }
+
+  static setTodoObjAsDone(proj, idx) {
+    proj.todos[idx].done = !proj.todos[idx].done;
+    Storage.updateProject(proj);
+  }
+
   static updateProject(project) {
     const projectList = Storage.getStorage();
     const [, projectIndex] = Storage.getProjectByName(project.name);

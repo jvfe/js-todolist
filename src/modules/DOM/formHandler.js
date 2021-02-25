@@ -1,7 +1,7 @@
-import Project from "../project";
-import Todo from "../todo";
 import ViewHandler from "./viewHandler";
 import UI from "./dom";
+import Project from "../project";
+import Todo from "../todo";
 import Storage from "../storage";
 
 class FormHandler {
@@ -18,7 +18,8 @@ class FormHandler {
 
       const newProject = new Project(formData.get("new-project-name"));
       Storage.addProject(newProject);
-      ViewHandler.createProjectButton(newProject);
+      projectForm.reset();
+      ViewHandler.renderView();
       UI.toggleClass(projectForm.parentElement, "inactive");
     });
   }
@@ -38,7 +39,8 @@ class FormHandler {
 
       currentProject.addTodo(newTodo);
       Storage.updateProject(currentProject);
-      ViewHandler.renderTodos(currentProject);
+      todoForm.reset();
+      ViewHandler.renderView();
       UI.toggleClass(todoForm.parentElement, "inactive");
     });
   }
