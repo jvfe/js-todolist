@@ -1,8 +1,9 @@
 import Storage from "../storage";
 class ViewHandler {
-  static renderView() {
+  static renderView(
+    currentProject = Storage.getCurrentProject() || Storage.getStorage()[0]
+  ) {
     const projectList = Storage.getStorage();
-    const currentProject = projectList[0];
     ViewHandler.renderProjects(projectList);
     ViewHandler.renderTodos(currentProject);
   }
@@ -32,6 +33,9 @@ class ViewHandler {
     newProject.classList.add(...["btn", "project", "project-btn"]);
     newProject.textContent = project.name;
     newProject.dataset.storageIdx = Storage.getProjectByName(project.name)[1];
+    newProject.addEventListener("click", () =>
+      ViewHandler.handleProjectSwitch(newProject)
+    );
     projectListEl.appendChild(newProject);
   }
 
@@ -45,7 +49,7 @@ class ViewHandler {
       checkTodo.classList.add(...["btn", "todo-btn", "check-todo"]);
     } else {
       checkTodo.textContent = "⛌";
-      checkTodo.classList.add(...["btn", "todo-btn", "check-todo"]);
+      checkTodo.classList.add(...["btn", "todo-btn", "remove-todo"]);
     }
 
     checkTodo.addEventListener("click", () =>
@@ -80,6 +84,13 @@ class ViewHandler {
     const todoIdx = Number(removeTodo.parentElement.dataset.projIdx);
     Storage.removeTodoObj(currentProject, todoIdx);
     ViewHandler.renderView();
+  }
+
+  static handleProjectSwitch(projectEl) {
+    const projectList = Storage.getStorage();
+    const currentProjIdx = Number(projectEl.dataset.storageIdx);
+    const currentProject = projectList[currentProjIdx];
+    ViewHandler.renderView(currentProject);
   }
 
   static createTodoContentElement(todo) {
