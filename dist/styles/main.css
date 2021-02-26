@@ -183,6 +183,10 @@ body {
   background-color: inherit;
 }
 
+.todo-date {
+  cursor: pointer;
+}
+
 .new-todo-container {
   max-height: 100%;
 }

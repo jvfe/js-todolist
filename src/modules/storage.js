@@ -1,14 +1,13 @@
 import Project from "./project";
 import Todo from "./todo";
-
+import { isSameDay, isSameWeek, isSameMonth } from "date-fns";
 class Storage {
   static initLocalStorage() {
     if (localStorage.length !== 0) {
       return;
-      // localStorage.clear();
     }
 
-    const initialTodo = new Todo("Create a new Todo!", "Bla bla");
+    const initialTodo = new Todo("Create a new Todo!", "Try it out");
     const initialProject = new Project("Main", [initialTodo]);
 
     Storage.updateStorage([initialProject]);
@@ -25,6 +24,41 @@ class Storage {
     });
 
     return convertedProjects;
+  }
+
+  static getAllTodos() {
+    const projectList = Storage.getStorage();
+    const allTodos = projectList.map((project) => project.todos).flat();
+    return allTodos;
+  }
+
+  static filterTodoByDate(todos, dateFn) {
+    return todos.filter((todo) => {
+      return dateFn(new Date(todo.date.date), new Date());
+    });
+  }
+
+  static getProjectForDate(dateFilter) {
+    switch (dateFilter) {
+      case "today":
+        return new Project(
+          "Today",
+          Storage.filterTodoByDate(Storage.getAllTodos(), isSameDay)
+        );
+        break;
+      case "this-week":
+        return new Project(
+          "This week",
+          Storage.filterTodoByDate(Storage.getAllTodos(), isSameWeek)
+        );
+        break;
+      case "this-month":
+        return new Project(
+          "This month",
+          Storage.filterTodoByDate(Storage.getAllTodos(), isSameMonth)
+        );
+        break;
+    }
   }
 
   static updateStorage(projectList) {

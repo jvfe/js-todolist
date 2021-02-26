@@ -28,6 +28,7 @@ class Todo {
       this._date = value;
       this._date_str = format(this._date, "dd/MM/yy");
     } else {
+      this._date = value;
       this._date_str = value;
     }
   }

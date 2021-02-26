@@ -6,6 +6,7 @@ class ViewHandler {
     const projectList = Storage.getStorage();
     ViewHandler.renderProjects(projectList);
     ViewHandler.renderTodos(currentProject);
+    ViewHandler.handleDateFilters();
   }
 
   static renderProjects(projectList) {
@@ -100,6 +101,18 @@ class ViewHandler {
     ViewHandler.renderView();
   }
 
+  static handleDateFilters() {
+    const dateFilters = document.querySelectorAll(".date-filter");
+
+    dateFilters.forEach((dateFilter) =>
+      dateFilter.addEventListener("click", () => {
+        const filterTime = dateFilter.dataset.time;
+        const filterProject = Storage.getProjectForDate(filterTime);
+        ViewHandler.renderView(filterProject);
+      })
+    );
+  }
+
   static createTodoContentElement(todo) {
     const todoContent = document.createElement("div");
     todoContent.classList.add("todo-content");
@@ -121,6 +134,7 @@ class ViewHandler {
       todoDateElement.type = "date";
       todoDateElement.name = "todo-date";
       todoDateElement.id = "todo-date";
+      todoDateElement.classList.add("todo-date");
       todoDateElement.addEventListener("change", () => {
         ViewHandler.handleTodoDate(
           todoDateElement,
@@ -129,6 +143,7 @@ class ViewHandler {
       });
     } else {
       todoDateElement = document.createElement("p");
+      todoDateElement.classList.add("todo-date");
       todoDateElement.textContent = todo.date.date_str;
       todoDateElement.addEventListener("click", () => {
         ViewHandler.handleTodoDate(todoDateElement, null);
