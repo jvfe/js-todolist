@@ -93,6 +93,13 @@ class ViewHandler {
     ViewHandler.renderView(currentProject);
   }
 
+  static handleTodoDate(dateEl, dateValue) {
+    const currentProject = Storage.getCurrentProject();
+    const todoIdx = Number(dateEl.parentElement.parentElement.dataset.projIdx);
+    Storage.setTodoDate(currentProject, todoIdx, dateValue);
+    ViewHandler.renderView();
+  }
+
   static createTodoContentElement(todo) {
     const todoContent = document.createElement("div");
     todoContent.classList.add("todo-content");
@@ -109,14 +116,23 @@ class ViewHandler {
     );
 
     let todoDateElement;
-    if (todo.date === "No date") {
+    if (todo.date.date_str === null) {
       todoDateElement = document.createElement("input");
       todoDateElement.type = "date";
       todoDateElement.name = "todo-date";
       todoDateElement.id = "todo-date";
+      todoDateElement.addEventListener("change", () => {
+        ViewHandler.handleTodoDate(
+          todoDateElement,
+          new Date(todoDateElement.value)
+        );
+      });
     } else {
       todoDateElement = document.createElement("p");
-      todoDateElement.textContent = todo.date;
+      todoDateElement.textContent = todo.date.date_str;
+      todoDateElement.addEventListener("click", () => {
+        ViewHandler.handleTodoDate(todoDateElement, null);
+      });
     }
 
     [innerDiv, todoDateElement].forEach((element) =>

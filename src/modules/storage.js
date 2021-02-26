@@ -8,7 +8,7 @@ class Storage {
       // localStorage.clear();
     }
 
-    const initialTodo = new Todo("Create a new Todo!", "Bla bla", "12/02/2018");
+    const initialTodo = new Todo("Create a new Todo!", "Bla bla");
     const initialProject = new Project("Main", [initialTodo]);
 
     Storage.updateStorage([initialProject]);
@@ -56,6 +56,11 @@ class Storage {
 
   static removeTodoObj(proj, idx) {
     proj.todos.splice(idx, 1);
+    Storage.updateProject(proj);
+  }
+
+  static setTodoDate(proj, idx, date) {
+    proj.todos[idx].date = date;
     Storage.updateProject(proj);
   }
 
