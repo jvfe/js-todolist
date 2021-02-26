@@ -3,7 +3,7 @@
   --middle-blue: rgba(138, 196, 208, 1);
   --orange-yellow-crayola: rgba(244, 209, 96, 1);
   --medium-champagne: rgba(231, 216, 142, 0.7);
-  --middle-red: #a89b9d;
+  --grayish: #a89b9d;
   --screamin-green: #61ff7e;
   --flame: #de541e;
 }
@@ -59,7 +59,7 @@ body {
 }
 
 .sidebar {
-  background: var(--middle-red);
+  background: var(--grayish);
   border-right: 2px solid var(--yale-blue);
   height: 100%;
   padding: 1em;
