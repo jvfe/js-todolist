@@ -54,6 +54,11 @@ class Storage {
     Storage.updateProject(proj);
   }
 
+  static removeTodoObj(proj, idx) {
+    proj.todos.splice(idx, 1);
+    Storage.updateProject(proj);
+  }
+
   static updateProject(project) {
     const projectList = Storage.getStorage();
     const [, projectIndex] = Storage.getProjectByName(project.name);

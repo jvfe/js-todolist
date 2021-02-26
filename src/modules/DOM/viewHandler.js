@@ -58,6 +58,10 @@ class ViewHandler {
     removeTodo.textContent = "Remove";
     removeTodo.classList.add(...["btn", "remove-todo"]);
 
+    removeTodo.addEventListener("click", () =>
+      ViewHandler.handleTodoRemoval(removeTodo)
+    );
+
     [checkTodo, todoContent, removeTodo].forEach((element) =>
       todoElement.appendChild(element)
     );
@@ -68,6 +72,13 @@ class ViewHandler {
     const currentProject = Storage.getCurrentProject();
     const todoIdx = Number(todoCheck.parentElement.dataset.projIdx);
     Storage.setTodoObjAsDone(currentProject, todoIdx);
+    ViewHandler.renderView();
+  }
+
+  static handleTodoRemoval(removeTodo) {
+    const currentProject = Storage.getCurrentProject();
+    const todoIdx = Number(removeTodo.parentElement.dataset.projIdx);
+    Storage.removeTodoObj(currentProject, todoIdx);
     ViewHandler.renderView();
   }
 
